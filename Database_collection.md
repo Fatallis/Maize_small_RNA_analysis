@@ -24,7 +24,7 @@ The fasta files corresponding to the genomic features annotated on the gtf and g
     bedtools getfasta -name -split -s -fi Zea_mays.AGPv4.dna.toplevel.fa -bed Zea_mays.AGPv4.32.gtf -fo gtf.fa
     bedtools getfasta -name -split -s -fi Zea_mays.AGPv4.dna.toplevel.fa -bed Zea_mays.AGPv4.32.gff3 -fo gff3.fa
 
-The sort_fasta.py can be downloaded from: ######## INSERT WEB LINK ######## INSERT WEB LINK ######## INSERT WEB LINK ########
+The sort_fasta.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/sort_fasta.py)
 
 The gtf.fa and gff3.fa files, were then processed to extract the sequences of the different genomic features annotated, we used the python script sort_fasta.py entering the following commands:
 
