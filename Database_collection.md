@@ -55,12 +55,13 @@ We downloaded the Ensembl Zea mays release 32 cDNA dataset:
 Data retrieved on 05/sep/2016
 
 The sequences were concentrated in a unique file ok_transcripts.fasta with the following commands:
-    fasta_cat.py -c -d ok_transcripts.fasta
 
+    fasta_cat.py -c -d ok_transcripts.fasta
 
 ### Coding Sequences (CDS) database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'CDS' category to the zm_CDSs directory:
+
     mkdir zm_CDSs
     mv *CDS* zm_CDSs/
 
@@ -73,43 +74,46 @@ We downloaded the Ensembl Zea mays release 32 CDS dataset:
 Data was retrieved on 05/sep/2016
 
 The sequences were concentrated in a unique file ok_CDSs.fasta with the following commands:
-    fasta_cat.py -c -d ok_CDSs.fasta
 
+    fasta_cat.py -c -d ok_CDSs.fasta
 
 ### Exons database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'Exons' category to the zm_exons directory:
+
     mkdir zm_exons
     mv *exon* zm_exons/
 
 The sequences were concentrated in a unique file ok_exons.fasta with the following commands:
-    fasta_cat.py -c -d ok_exons.fasta
 
+    fasta_cat.py -c -d ok_exons.fasta
 
 ### 5' UTRs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'Five prime UTRs' category to the zm_five_prime_utrs directory:
+
     mkdir zm_five_prime_utrs
     mv *five* zm_five_prime_utrs/
 
 The sequences were concentrated in a unique file ok_five_primes.fasta with the following commands:
+
     fasta_cat.py -c -d ok_five_primes.fasta
-
-
 
 ### 3' UTRs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'Three prime UTRs' category to the zm_three_prime_utrs directory:
+
     mkdir zm_three_prime_utrs
     mv *three* zm_three_prime_utrs/
 
 The sequences were concentrated in a unique file ok_three_primes.fasta with the following commands:
-    fasta_cat.py -c -d ok_three_primes.fasta
 
+    fasta_cat.py -c -d ok_three_primes.fasta
 
 ### miRNAs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'miRNAs' category to the zm_miRNAs directory:
+
     mkdir zm_miRNAs
     mv *miRNA* zm_miRNAs/
 
@@ -124,32 +128,37 @@ We downloaded the miRNA datasets from miRBase release 21 (http://www.mirbase.org
 Data was retrieved on 05/sep/2016
 
 The sequences belonging to maize were filtered with the following commands:
+
     filter_miRNAs.py -o organisms.txt mature.fa zma -f zm_mature.fa
     filter_miRNAs.py -o organisms.txt hairpin.fa zma -f zm_hairpin.fa
 
 The sequences belonging to plants were filtered with the following command:
+
     filter_miRNAs.py -t organisms.txt mature.fa Viridiplantae -f plants_mature.fasta
 
 The mature.fa, hairpin.fa and organisms.txt files were deleted.
+
     rm mature.fa hairpin.fa organisms.txt
 
 The sequences were converted to DNA sequences and concentrated in a unique file ok_miRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_miRNAs.fasta
 
+    fasta_cat.py -c -d ok_miRNAs.fasta
 
 ### lincRNAs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'lincRNAs' category to the zm_lincRNAs directory:
+
     mkdir zm_lincRNAs
     mv *lincRNA* zm_lincRNAs/
 
 The sequences were concentrated in a unique file ok_lincRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_lincRNAs.fasta
 
+    fasta_cat.py -c -d ok_lincRNAs.fasta
 
 ### tRNAs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'tRNAs' category to the zm_tRNAs directory:
+
     mkdir zm_tRNAs
     mv *tRNA* zm_tRNAs/
 
@@ -160,8 +169,8 @@ We downloaded the GtRNAdb Zea mays section.
 Data was retrieved on 05/sep/2016
 
 The sequences were concentrated in a unique file ok_tRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_tRNAs.fasta
 
+    fasta_cat.py -c -d ok_tRNAs.fasta
 
 ### rRNAs database.
 
@@ -176,8 +185,8 @@ We navigated to <http://combio.pl/rrna/> and then clicked on "Search" button and
 We navigated to the PhytoREF version 1.1 homepage (<http://5.196.17.195/phytoref/index.php>) and on the "Search & Downloads" section selected the "Genus" option and entered "Zea". The results were saved in a fasta file named: 16S.fa. Data retrieved on 17/11/2015.
 
 The sequences were concentrated in a unique file ok_rRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_rRNAs.fasta
 
+    fasta_cat.py -c -d ok_rRNAs.fasta
 
 ### snoRNAs database.
 
@@ -186,8 +195,8 @@ We navigated to the Plant snoRNA Database version 1.2 and in the "Sequences" opt
 Data was retrieved on 05/sep/2016
 
 The sequences were concentrated in a unique file ok_snoRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_snoRNAs.fasta
 
+    fasta_cat.py -c -d ok_snoRNAs.fasta
 
 ### snRNAs database.
 
@@ -196,8 +205,8 @@ We navigated to the Splicing Related Gene Database <http://www.plantgdb.org/SRGD
 Data was retrieved on 05/sep/2016
 
 The sequences were concentrated in a unique file ok_snRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_snRNAs.fasta
 
+    fasta_cat.py -c -d ok_snRNAs.fasta
 
 ### Repeats database.
 
@@ -223,8 +232,8 @@ The sequences corresponding to maize from the PGSB database were filtered with t
     filter_by_name.py mipsREdat_9.3p_Poaceae_TEs.fasta maize_repeats_PGSB.fa Zea
 
 The sequences were concentrated in a unique file ok_repeats.fasta with the following commands:
-    fasta_cat.py -c -d ok_repeats.fasta
 
+    fasta_cat.py -c -d ok_repeats.fasta
 
 ### tasiRNAs database.
 
@@ -249,8 +258,8 @@ The sequences were saved in the file tasiRNAs.fasta.
 Data was retrieved on 17/11/2015
 
 The sequences were concentrated in a unique file ok_tasiRNAs.fasta with the following commands:
-    fasta_cat.py -c -d ok_tasiRNAs.fasta
 
+    fasta_cat.py -c -d ok_tasiRNAs.fasta
 
 ### RFAM
 
