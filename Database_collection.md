@@ -213,11 +213,14 @@ Data was retrieved on 17/11/2015
 ### RFAM
 
 The RF files containing Zea mays sequences were searched on the PFAM website <http://rfam.xfam.org/>.
-The number of those files were saved on the Databases.txt file. And then the files were downloaded to the Rfam directory:
+The accession numbers of the files were manually added to the files: miRNAs.rna, mixedRNAs.rna, rRNAs.rna, snoRNAs.rna  snRNAs.rna, tRNAs.rna. The mixedRNAs.rna files contained those RNAs which were difficult to fit in a single definite category.
+
+The accession number of those files were saved on the Databases.txt file. And then the files were downloaded to the Rfam directory and uncompressed:
 
     while read p; do
 	   wget ftp://ftp.ebi.ac.uk/pub/databases/Rfam/12.1/fasta_files/$p.fa.gz
     done < Databases.txt
+    gunzip *.gz
     
 Data was retrieved on 05/sep/2016
 
@@ -228,7 +231,7 @@ Then the files corresponing to Zea mays were extracted from the downloaded files
     done
 The filter_by_name.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/filter_by_name.py)
 
-The sequences were moved to the corresponding directory:
+And then were moved to the corresponding directory according with its classification:
 
     move_rfams.py
 The move_rfams.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/move_rfams.py)
@@ -236,7 +239,7 @@ The move_rfams.py script can be found [here.](https://github.com/Fatallis/Small_
 The following command was executed to concatenate the different files corresponding to each database, transform RNA to DNA and collapse them to avoid duplicate sequences.
 
     batch_fasta_cat.py
-The batch_fasta_cat.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_fasta_cat.py)
+The batch_fasta_cat.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_fasta_cat.py) and requires the fasta_cat.py script which can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/fasta_cat.py)
 
 As a result of the command execution:
 * The transcript sequences were concentrated in a unique file ok_transcripts.fasta.
