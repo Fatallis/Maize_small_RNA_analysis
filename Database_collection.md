@@ -24,12 +24,12 @@ The fasta files corresponding to the genomic features annotated on the gtf and g
     bedtools getfasta -name -split -s -fi Zea_mays.AGPv4.dna.toplevel.fa -bed Zea_mays.AGPv4.32.gtf -fo gtf.fa
     bedtools getfasta -name -split -s -fi Zea_mays.AGPv4.dna.toplevel.fa -bed Zea_mays.AGPv4.32.gff3 -fo gff3.fa
 
-The sort_fasta.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/sort_fasta.py)
-
 The gtf.fa and gff3.fa files, were then processed to extract the sequences of the different genomic features annotated, we used the python script sort_fasta.py entering the following commands:
 
     sort_fasta.py gtf.fa
     sort_fasta.py gff3.fa
+The sort_fasta.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/sort_fasta.py)
+
 The results of this script are the corresponding CDS, exon, five_prime_UTR, gene, miRNA, miRNA_gene, repeat_region, three_prime_UTR, transcript, start_codon, and stop_codon fasta files. The start_codon and stop_codon files were deleted because they will not be used in the further analysis. The other files were moved to the corresponding database.
 
 ### Maize genome.
@@ -38,7 +38,6 @@ We copied the Ensembl Zea mays release 32 to the zm_genome directory.
 
     mkdir zm_genome
     cp Zea_mays.AGPv4.dna.toplevel.fa zm_genome
-
 
 ### Transcripts database.
 
@@ -53,10 +52,6 @@ We downloaded the Ensembl Zea mays release 32 cDNA dataset:
     gunzip *.gz
 
 Data retrieved on 05/sep/2016
-
-The sequences were concentrated in a unique file ok_transcripts.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_transcripts.fasta
 
 ### Coding Sequences (CDS) database.
 
@@ -73,20 +68,12 @@ We downloaded the Ensembl Zea mays release 32 CDS dataset:
 
 Data was retrieved on 05/sep/2016
 
-The sequences were concentrated in a unique file ok_CDSs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_CDSs.fasta
-
 ### Exons database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'Exons' category to the zm_exons directory:
 
     mkdir zm_exons
     mv *exon* zm_exons/
-
-The sequences were concentrated in a unique file ok_exons.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_exons.fasta
 
 ### 5' UTRs database.
 
@@ -95,20 +82,12 @@ We copied the files obtained in the 'Ensembl Genomic Features' step correspondin
     mkdir zm_five_prime_utrs
     mv *five* zm_five_prime_utrs/
 
-The sequences were concentrated in a unique file ok_five_primes.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_five_primes.fasta
-
 ### 3' UTRs database.
 
 We copied the files obtained in the 'Ensembl Genomic Features' step corresponding to the 'Three prime UTRs' category to the zm_three_prime_utrs directory:
 
     mkdir zm_three_prime_utrs
     mv *three* zm_three_prime_utrs/
-
-The sequences were concentrated in a unique file ok_three_primes.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_three_primes.fasta
 
 ### miRNAs database.
 
@@ -139,10 +118,7 @@ The sequences belonging to plants were filtered with the following command:
 The mature.fa, hairpin.fa and organisms.txt files were deleted.
 
     rm mature.fa hairpin.fa organisms.txt
-
-The sequences were converted to DNA sequences and concentrated in a unique file ok_miRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_miRNAs.fasta
+The filter_miRNAs.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/filter_miRNAs.py)
 
 ### lincRNAs database.
 
@@ -150,10 +126,6 @@ We copied the files obtained in the 'Ensembl Genomic Features' step correspondin
 
     mkdir zm_lincRNAs
     mv *lincRNA* zm_lincRNAs/
-
-The sequences were concentrated in a unique file ok_lincRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_lincRNAs.fasta
 
 ### tRNAs database.
 
@@ -168,10 +140,6 @@ We downloaded the GtRNAdb Zea mays section.
 
 Data was retrieved on 05/sep/2016
 
-The sequences were concentrated in a unique file ok_tRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_tRNAs.fasta
-
 ### rRNAs database.
 
 We navigated to the SILVA rRNA database release 126 homepage (<http://www.arb-silva.de/>) and on the search section, selected the SSU r126 Database; entered "Zea mays" on the organism name field and clicked the "Search" button, all the results were downloaded as a fasta without gaps file and saved as silva126_ssu.fasta. The same procedure was followed selecting the LSU r126 database instead. All the results were downloaded and saved as silva126_lsu.fasta. Data retrieved on 05/sep/2016.
@@ -184,29 +152,17 @@ The extracted fasta files were renamed accordingly as silva126_ssu.fa and silva1
 We navigated to <http://combio.pl/rrna/> and then clicked on "Search" button and searched for Zea mays. The results were saved as 5S.fa. Data retrieved on 05/sep/2016.
 We navigated to the PhytoREF version 1.1 homepage (<http://5.196.17.195/phytoref/index.php>) and on the "Search & Downloads" section selected the "Genus" option and entered "Zea". The results were saved in a fasta file named: 16S.fa. Data retrieved on 17/11/2015.
 
-The sequences were concentrated in a unique file ok_rRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_rRNAs.fasta
-
 ### snoRNAs database.
 
 We navigated to the Plant snoRNA Database version 1.2 and in the "Sequences" option (<http://bioinf.scri.sari.ac.uk/cgi-bin/plant_snorna/get-sequences>) selected all the "Zea mays" corresponding sequences (those starting with "Zm"). The results were saved in the file snoRNAs.fa.
 
 Data was retrieved on 05/sep/2016
 
-The sequences were concentrated in a unique file ok_snoRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_snoRNAs.fasta
-
 ### snRNAs database.
 
 We navigated to the Splicing Related Gene Database <http://www.plantgdb.org/SRGD/ASRG/ShowRNA.php> and selected all the elements of the list of Arabidospsis genes corresponding to the snRNAs and save them in the snRNAs.fasta file.
 
 Data was retrieved on 05/sep/2016
-
-The sequences were concentrated in a unique file ok_snRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_snRNAs.fasta
 
 ### Repeats database.
 
@@ -230,10 +186,7 @@ Data was retrieved on 05/sep/2016
 The sequences corresponding to maize from the PGSB database were filtered with the following command:
 
     filter_by_name.py mipsREdat_9.3p_Poaceae_TEs.fasta maize_repeats_PGSB.fa Zea
-
-The sequences were concentrated in a unique file ok_repeats.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_repeats.fasta
+The filter_by_name.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/filter_by_name.py)
 
 ### tasiRNAs database.
 
@@ -257,10 +210,6 @@ The sequences were saved in the file tasiRNAs.fasta.
 
 Data was retrieved on 17/11/2015
 
-The sequences were concentrated in a unique file ok_tasiRNAs.fasta with the following commands:
-
-    fasta_cat.py -c -d ok_tasiRNAs.fasta
-
 ### RFAM
 
 The RF files containing Zea mays sequences were searched on the PFAM website <http://rfam.xfam.org/>.
@@ -277,7 +226,30 @@ Then the files corresponing to Zea mays were extracted from the downloaded files
     for fasta in  *.fa; do
 	   filter_by_name.py $fasta zm_$fasta Zea;
     done
+The filter_by_name.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/filter_by_name.py)
 
 The sequences were moved to the corresponding directory:
 
     move_rfams.py
+The move_rfams.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/move_rfams.py)
+
+The following command was executed to concatenate the different files corresponding to each database, transform RNA to DNA and collapse them to avoid duplicate sequences.
+
+    batch_fasta_cat.py
+The batch_fasta_cat.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_fasta_cat.py)
+
+As a result of the command execution:
+* The transcript sequences were concentrated in a unique file ok_transcripts.fasta.
+* The coding sequences were concentrated in a unique file ok_CDSs.fasta.
+* The exon sequences were concentrated in a unique file ok_exons.fasta.
+* The 5' UTR sequences were concentrated in a unique file ok_five_primes.fasta.
+* The 3' UTR sequences were concentrated in a unique file ok_three_primes.fasta.
+* The miRNAs sequences were converted to DNA sequences and concentrated in a unique file ok_miRNAs.fasta.
+* The lincRNAs sequences were concentrated in a unique file ok_lincRNAs.fasta.
+* The tRNAs sequences were concentrated in a unique file ok_tRNAs.fasta.
+* The rRNAs sequences were concentrated in a unique file ok_rRNAs.fasta.
+* The snoRNAs sequences were concentrated in a unique file ok_snoRNAs.fasta.
+* The snRNAs sequences were concentrated in a unique file ok_snRNAs.fasta.
+* The repeats sequences were concentrated in a unique file ok_repeats.fasta.
+* The tasiRNAs sequences were concentrated in a unique file ok_tasiRNAs.fasta.
+
