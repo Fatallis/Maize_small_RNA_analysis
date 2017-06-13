@@ -280,6 +280,6 @@ All those files were concatenated to a single file. The "ok" files were deleted 
 Bowtie index files were created in order to use the databases with the bowtie program.
 Bowtie indexes were built for each ok_file in the different directories:
 
-    bowtie_index.py
+    bowtie_index.py .
     
 The bowtie_index.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/bowtie_index.py)
