@@ -1,4 +1,4 @@
-# Small RNAs expression Analysis on Zea mays embryogenic callus.
+# Small RNAs expression analysis on _Zea mays_ embryogenic callus.
 This file describe the database collection for the analysis of the illumina small RNAs libraries from maize embryogenic callus.
 
 ## Database collection and preparation.
