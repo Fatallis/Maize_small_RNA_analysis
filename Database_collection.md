@@ -256,6 +256,8 @@ As a result of the command execution:
 * The repeats sequences were concentrated in a unique file ok_repeats.fasta.
 * The tasiRNAs sequences were concentrated in a unique file ok_tasiRNAs.fasta.
 
+### Global database
+
 A global database was created including all the sequences on the previous databases plus the sequences on the toplevel maize genome version (Ensembl 32). 
 
 The sequences of all the "ok" databases were copied to the zm_all_ok_dbs directory:
@@ -273,8 +275,9 @@ All those files were concatenated to a single file. The "ok" files were deleted 
     rm zm_all_ok_dbs/*.fasta
     mv zm_all_ok_dbs/tmp.fa zm_all_ok_dbs/ok_full_zm.fasta
 
-Bowtie index files were created in order to use the databases with the bowtie program.
+### Bowtie indexes
 
+Bowtie index files were created in order to use the databases with the bowtie program.
 Bowtie indexes were built for each ok_file in the different directories:
 
     bowtie_index.py
