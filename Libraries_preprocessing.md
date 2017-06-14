@@ -1,14 +1,44 @@
-##Libraries preprocessing.
+# Libraries preprocessing.
+Preprocessing of libraries is carried out to eliminate sequences that possibly does not belong to the population of small RNAs, removal of adapters sequences and sequences that do not meet the required quality.
 
-###Not aligning reads removal.
+## Files preparation
+The sequences belonging to each stage were separated and cleaned from adapter sequences with the following commands (Please note the differences in the sequences of the adapters used for each library, this is due to a multiplexed sequencing experiment):
 
-The libraries were named 00_EC.fastq, 01_EC.fastq, 04_EC.fastq and 10_EC.fastq for Immature embryos, one month, four months and 10 months old callus respectively.
-The four libraries were concatenated and collapsed to map it against the ok_full_zm.fasta file.
+    fastx_clipper -a CTGTAGGCACCATCAAT -l 18 -c -i raw_00_01.fastq -o noAdFile_00.fastq
+    fastx_clipper -a ATCTCGTATGCCGTCTTCTGCTTG -l 18 -c -i raw_00_01.fastq -o noAdFile_01.fastq
+    fastx_clipper -a CTGTAGGCACCATCAAT -l 18 -c -i raw_04_10.fastq -o noAdFile_04_1.fastq
+    fastx_clipper -a ATCTCGTATGCCGTCTTCTGCTTG -l 18 -c -i raw_04_10.fastq -o noAdFile_10.fastq
+    
+For the second four months library the following command was executed:
 
-    *.fastq > full_reads.fq
+    fastx_clipper -a ATCTCGTATGCCGTCTTCTGCTTG -l 18 -c -i raw_04.fastq -o noAdFile_04_2.fastq
+    
+The two files belonging to the four months callus were merged:
+
+    cat noAdFile_04_1.fastq noAdFile_04_1.fastq > noAdFile_04.fastq
+
+Artifacts were removed from the files with te following commands:
+
+    fastx_artifacts_filter -i noAdFile_00.fastq -o noAd_art_File_00.fastq
+    fastx_artifacts_filter -i noAdFile_01.fastq -o noAd_art_File_00.fastq
+    fastx_artifacts_filter -i noAdFile_04.fastq -o noAd_art_File_04.fastq
+    fastx_artifacts_filter -i noAdFile_10.fastq -o noAd_art_File_00.fastq
+
+Sequences shorter than 18 nt and longer than 27 nt were removed from the files with the following commands:
+
+    filter_by_size.py noAd_art_File_00.fastq 00_EC.fastq
+    filter_by_size.py noAd_art_File_01.fastq 01_EC.fastq
+    filter_by_size.py noAd_art_File_04.fastq 04_EC.fastq
+    filter_by_size.py noAd_art_File_10.fastq 10_EC.fastq
+    
+The filter_by_size.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/filter_by_size.py)
+
+The four libraries were concatenated and collapsed and saved in the file full_reads_collapsed.fasta.
+
+    cat noAd_art_File_*.fastq > full_reads.fq
     fastx_collapser -i full_reads.fq -o full_reads_collapsed.fasta
 
-The individual libraries were collapsed also:
+The individual libraries were also collapsed:
 
     fastx_collapser -i 00_EC.fastq -o 00_EC_collapsed.fasta
     fastx_collapser -i 01_EC.fastq -o 01_EC_collapsed.fasta
@@ -18,28 +48,10 @@ The individual libraries were collapsed also:
 The number of unique and total sequences were counted on the full set of collapsed files:
 
     batch_count_reads.py EC_collapsed
+    
+The batch_count_reads.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_count_reads.py)
 
-The results of this counts were:
-
-    00_EC_collapsed.fasta
-    Unique reads:	2087525
-    Total reads:	3798445
-    
-    01_EC_collapsed.fasta
-    Unique reads:	1877775
-    Total reads:	8393542
-    
-    04_EC_collapsed.fasta
-    Unique reads:	427544
-    Total reads:	879841
-    
-    10_EC_collapsed.fasta
-    Unique reads:	5471147
-    Total reads:	18337128
-    
-    full_reads_EC_collapsed.fasta
-    Unique reads:	9169355
-    Total reads:	31408956
+## Not aligning reads removal.
 
 The full_reads_EC_collapsed.fasta was mapped against the whole sequences of the databases and reads not aligned were stored in the not_aligning directory, in the not_aligning.fasta file.
 
