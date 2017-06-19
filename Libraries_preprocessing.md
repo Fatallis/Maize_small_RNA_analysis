@@ -49,7 +49,7 @@ The number of unique and total sequences were counted on the full set of collaps
 
     batch_count_reads.py EC_collapsed
     
-The batch_count_reads.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_count_reads.py)
+The batch_count_reads.py script can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/batch_count_reads.py) This script requires the count_reads.py script which can be found [here.](https://github.com/Fatallis/Small_RNA_analysis/blob/master/python/count_reads.py)
 
 ## Not aligning reads removal.
 
