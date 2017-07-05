@@ -1,7 +1,7 @@
 # Small RNA analysis
 This repository contains some of the instructions and scripts used to analyse Maize small RNAs.
 
-Some of the results of these scripts belong on the manscript in revision:
+Some of the results of these scripts belong to the manuscript in revision:
 
 * Alejandri-Ramírez ND, Chávez-Hernández EC, Contreras-Guerra JL, Reyes-Taboada JL, Dinkova TD. Differential small RNA expression upon induction and establishment of Tuxpeño maize embryogenic callus cultures.
 
