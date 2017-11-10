@@ -1,4 +1,4 @@
-# Small RNA analysis
+# Maize Small RNA analysis
 This repository contains some of the instructions and scripts used to analyse Maize small RNAs.
 
 Some of the results of these scripts belong to the manuscript in revision:
